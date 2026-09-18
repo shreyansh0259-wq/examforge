@@ -1,0 +1,43 @@
+name: Setup ExamForge V2
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  setup:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout V2
+        uses: actions/checkout@v4
+        with:
+          ref: v2
+
+      - name: Setup Flutter
+        uses: subosito/flutter-action@v2
+        with:
+          flutter-version: '3.35.2'
+          channel: stable
+
+      - name: Create fresh Flutter project
+        run: |
+          flutter create --platforms=android v2_temp
+          cp -r v2_temp/. .
+          rm -rf v2_temp
+
+      - name: Restore V2 data folders
+        run: |
+          mkdir -p assets/data
+          printf '%s\n' '{"version":2,"exams":[]}' > assets/data/syllabus.json
+          printf '%s\n' '{"version":2,"questions":[]}' > assets/data/questions.json
+
+      - name: Commit V2 foundation
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add .
+          git commit -m "Create fresh ExamForge V2 foundation" || echo "Nothing to commit"
+          git push origin v2

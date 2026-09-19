@@ -84,11 +84,59 @@ class _TestSetupScreenState extends State<TestSetupScreen> {
 
   Set<String> selectedSubjects = {'Physics', 'Chemistry', 'Biology'};
 
+  final SyllabusService _syllabusService = SyllabusService();
+
+  String? selectedChapter;
+  Set<String> selectedTopics = {};
+  List<Map<String, dynamic>> chapters = [];
+  bool loadingChapters = false;
+
+  Future<void> loadChapters(String subject) async {
+    setState(() {
+      loadingChapters = true;
+      selectedChapter = null;
+      selectedTopics = {};
+    });
+
+    try {
+      final result = await _syllabusService.getUnits(
+        selectedExam,
+        subject,
+      );
+
+      if (!mounted) return;
+
+      setState(() {
+        chapters = result;
+        loadingChapters = false;
+      });
+    } catch (e) {
+      if (!mounted) return;
+
+      setState(() {
+        chapters = [];
+        loadingChapters = false;
+      });
+    }
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    loadChapters('Physics');
+  }
+
+
   void changeExam(String exam) {
     setState(() {
       selectedExam = exam;
       selectedSubjects = subjects[exam]!.toSet();
+      selectedChapter = null;
+      selectedTopics = {};
+      chapters = [];
     });
+
+    loadChapters(subjects[exam]!.first);
   }
 
   @override

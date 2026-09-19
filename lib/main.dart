@@ -3,7 +3,7 @@ import 'importer/question_importer.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  await QuestionImporter().importFromAsset("assets/data/questions/neet/physics.json");
+  QuestionImporter().importFromAsset("assets/data/questions/neet/physics.json");
   runApp(const ExamForgeApp());
 }
 

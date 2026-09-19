@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
+import 'importer/question_importer.dart';
 
-void main() {
+Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await QuestionImporter().importFromAsset("assets/data/questions/neet/physics.json");
   runApp(const ExamForgeApp());
 }
 

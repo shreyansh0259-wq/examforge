@@ -1,0 +1,86 @@
+{
+  "exam": "NEET",
+  "subject": "Chemistry",
+  "units": [
+    {
+      "name": "Some Basic Concepts of Chemistry",
+      "topics": ["Matter and Its Nature", "Laws of Chemical Combination", "Atomic and Molecular Masses", "Mole Concept", "Stoichiometry"]
+    },
+    {
+      "name": "Atomic Structure",
+      "topics": ["Nature of Electromagnetic Radiation", "Atomic Models", "Bohr Model", "Quantum Numbers", "Electronic Configuration"]
+    },
+    {
+      "name": "Classification of Elements and Periodicity",
+      "topics": ["Periodic Law", "Modern Periodic Table", "Periodic Trends", "Atomic Radius", "Ionization Enthalpy", "Electron Gain Enthalpy", "Electronegativity"]
+    },
+    {
+      "name": "Chemical Bonding and Molecular Structure",
+      "topics": ["Ionic Bonding", "Covalent Bonding", "Lewis Structures", "VSEPR Theory", "Hybridization", "Molecular Orbital Theory", "Hydrogen Bonding"]
+    },
+    {
+      "name": "Thermodynamics",
+      "topics": ["System and Surroundings", "First Law", "Enthalpy", "Heat Capacity", "Hess's Law", "Entropy", "Gibbs Energy"]
+    },
+    {
+      "name": "Equilibrium",
+      "topics": ["Chemical Equilibrium", "Equilibrium Constant", "Le Chatelier Principle", "Ionic Equilibrium", "Acids and Bases", "pH", "Buffer Solutions", "Solubility Equilibrium"]
+    },
+    {
+      "name": "Redox Reactions",
+      "topics": ["Oxidation and Reduction", "Oxidation Number", "Balancing Redox Reactions", "Applications of Redox Reactions"]
+    },
+    {
+      "name": "Solutions",
+      "topics": ["Types of Solutions", "Concentration Terms", "Solubility", "Vapour Pressure", "Colligative Properties", "Osmosis", "Abnormal Molar Mass"]
+    },
+    {
+      "name": "Electrochemistry",
+      "topics": ["Electrochemical Cells", "Galvanic Cells", "Nernst Equation", "Conductance", "Kohlrausch Law", "Electrolysis", "Batteries and Fuel Cells"]
+    },
+    {
+      "name": "Chemical Kinetics",
+      "topics": ["Rate of Reaction", "Rate Law", "Order of Reaction", "Molecularity", "Integrated Rate Equations", "Half Life", "Arrhenius Equation"]
+    },
+    {
+      "name": "p-Block Elements",
+      "topics": ["Group 13", "Group 14", "Group 15", "Group 16", "Group 17", "Group 18", "Trends and Important Compounds"]
+    },
+    {
+      "name": "d- and f-Block Elements",
+      "topics": ["Transition Elements", "Electronic Configuration", "Oxidation States", "Magnetic Properties", "Coordination Behaviour", "Lanthanoids", "Actinoids"]
+    },
+    {
+      "name": "Coordination Compounds",
+      "topics": ["Coordination Entities", "Ligands", "Coordination Number", "Nomenclature", "Isomerism", "Valence Bond Theory", "Crystal Field Theory", "Applications"]
+    },
+    {
+      "name": "Organic Chemistry: Basic Principles",
+      "topics": ["Organic Compounds", "IUPAC Nomenclature", "Isomerism", "Electronic Effects", "Reaction Intermediates", "Organic Reaction Mechanisms", "Purification Techniques"]
+    },
+    {
+      "name": "Hydrocarbons",
+      "topics": ["Alkanes", "Alkenes", "Alkynes", "Aromatic Hydrocarbons", "Preparation", "Properties", "Important Reactions"]
+    },
+    {
+      "name": "Organic Compounds Containing Halogens",
+      "topics": ["Haloalkanes", "Haloarenes", "Preparation", "Properties", "Nucleophilic Substitution", "Important Applications"]
+    },
+    {
+      "name": "Organic Compounds Containing Oxygen",
+      "topics": ["Alcohols", "Phenols", "Ethers", "Aldehydes", "Ketones", "Carboxylic Acids", "Preparation and Reactions"]
+    },
+    {
+      "name": "Organic Compounds Containing Nitrogen",
+      "topics": ["Amines", "Diazonium Salts", "Preparation", "Properties", "Important Reactions"]
+    },
+    {
+      "name": "Biomolecules",
+      "topics": ["Carbohydrates", "Proteins", "Amino Acids", "Enzymes", "Vitamins", "Nucleic Acids"]
+    },
+    {
+      "name": "Principles Related to Practical Chemistry",
+      "topics": ["Laboratory Techniques", "Qualitative Analysis", "Detection of Functional Groups", "Organic Preparations", "Inorganic Analysis", "Chemical Tests"]
+    }
+  ]
+}

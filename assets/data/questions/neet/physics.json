@@ -1,0 +1,65 @@
+{
+  "version": 1,
+  "questions": [
+    {
+      "id": "neet_physics_sample_001",
+      "exam": "NEET",
+      "subject": "Physics",
+      "chapter": "Kinematics",
+      "topic": "Motion in a Straight Line",
+      "difficulty": "Easy",
+      "question": "A body starts from rest and moves with constant acceleration. Which quantity changes uniformly with time?",
+      "options": [
+        "Velocity",
+        "Mass",
+        "Density",
+        "Temperature"
+      ],
+      "correct_answer": 0,
+      "explanation": "For constant acceleration, velocity changes uniformly with time.",
+      "source_type": "Original",
+      "source": "ExamForge",
+      "year": 2026
+    },
+    {
+      "id": "neet_physics_sample_002",
+      "exam": "NEET",
+      "subject": "Physics",
+      "chapter": "Laws of Motion",
+      "topic": "Newton's Second Law",
+      "difficulty": "Medium",
+      "question": "If the net force acting on an object is doubled while its mass remains constant, what happens to its acceleration?",
+      "options": [
+        "It becomes half",
+        "It remains the same",
+        "It doubles",
+        "It becomes four times"
+      ],
+      "correct_answer": 2,
+      "explanation": "Newton's second law gives F = ma. With constant mass, doubling force doubles acceleration.",
+      "source_type": "Original",
+      "source": "ExamForge",
+      "year": 2026
+    },
+    {
+      "id": "neet_physics_sample_003",
+      "exam": "NEET",
+      "subject": "Physics",
+      "chapter": "Work, Energy and Power",
+      "topic": "Kinetic Energy",
+      "difficulty": "Easy",
+      "question": "If the speed of an object is doubled, its kinetic energy becomes:",
+      "options": [
+        "Two times",
+        "Four times",
+        "Half",
+        "Unchanged"
+      ],
+      "correct_answer": 1,
+      "explanation": "Kinetic energy is proportional to the square of speed: K = 1/2 mv².",
+      "source_type": "Original",
+      "source": "ExamForge",
+      "year": 2026
+    }
+  ]
+}

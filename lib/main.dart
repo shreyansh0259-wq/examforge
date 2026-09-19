@@ -210,7 +210,6 @@ class _TestSetupScreenState extends State<TestSetupScreen> {
 
             const SizedBox(height: 20),
 
-            const Text(
               const Text(
                 'Select Chapter',
                 style: TextStyle(
@@ -284,6 +283,7 @@ class _TestSetupScreenState extends State<TestSetupScreen> {
               ],
 
               const SizedBox(height: 20),
+                const Text(
               'Number of Questions',
               style: TextStyle(
                 fontSize: 20,

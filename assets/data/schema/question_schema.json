@@ -1,0 +1,23 @@
+{
+  "version": 1,
+  "question": {
+    "id": "unique_question_id",
+    "exam": "NEET",
+    "subject": "Physics",
+    "chapter": "Chapter Name",
+    "topic": "Topic Name",
+    "difficulty": "Medium",
+    "question": "Question text",
+    "options": [
+      "Option A",
+      "Option B",
+      "Option C",
+      "Option D"
+    ],
+    "correct_answer": 0,
+    "explanation": "Detailed solution",
+    "source_type": "PYQ",
+    "source": "Source name",
+    "year": 2025
+  }
+}

@@ -1,0 +1,225 @@
+{
+  "exam": "NEET",
+  "subject": "Zoology",
+  "units": [
+    {
+      "name": "Animal Kingdom",
+      "topics": [
+        "Basis of Classification",
+        "Non-chordates",
+        "Chordates",
+        "Animal Phyla",
+        "Vertebrate Classes"
+      ]
+    },
+    {
+      "name": "Structural Organisation in Animals",
+      "topics": [
+        "Animal Tissues",
+        "Epithelial Tissue",
+        "Connective Tissue",
+        "Muscular Tissue",
+        "Nervous Tissue",
+        "Cockroach",
+        "Earthworm",
+        "Frog"
+      ]
+    },
+    {
+      "name": "Human Physiology",
+      "topics": [
+        "Digestion and Absorption",
+        "Breathing and Exchange of Gases",
+        "Body Fluids and Circulation",
+        "Excretory Products and Elimination",
+        "Locomotion and Movement",
+        "Neural Control and Coordination",
+        "Chemical Coordination and Integration"
+      ]
+    },
+    {
+      "name": "Human Reproduction",
+      "topics": [
+        "Male Reproductive System",
+        "Female Reproductive System",
+        "Gametogenesis",
+        "Menstrual Cycle",
+        "Fertilisation",
+        "Pregnancy",
+        "Embryonic Development",
+        "Parturition",
+        "Lactation"
+      ]
+    },
+    {
+      "name": "Reproductive Health",
+      "topics": [
+        "Reproductive Health",
+        "Population Control",
+        "Contraception",
+        "Infertility",
+        "Assisted Reproductive Technologies",
+        "Sexually Transmitted Infections"
+      ]
+    },
+    {
+      "name": "Principles of Inheritance and Variation",
+      "topics": [
+        "Mendelian Genetics",
+        "Inheritance Patterns",
+        "Chromosomal Theory",
+        "Linkage",
+        "Crossing Over",
+        "Sex Determination",
+        "Sex-linked Inheritance",
+        "Mutations",
+        "Genetic Disorders"
+      ]
+    },
+    {
+      "name": "Molecular Basis of Inheritance",
+      "topics": [
+        "DNA",
+        "RNA",
+        "Replication",
+        "Transcription",
+        "Translation",
+        "Genetic Code",
+        "Gene Regulation",
+        "Human Genome Project",
+        "DNA Fingerprinting"
+      ]
+    },
+    {
+      "name": "Evolution",
+      "topics": [
+        "Origin of Life",
+        "Evolutionary Evidence",
+        "Darwinism",
+        "Natural Selection",
+        "Modern Synthetic Theory",
+        "Hardy-Weinberg Principle",
+        "Human Evolution"
+      ]
+    },
+    {
+      "name": "Human Health and Disease",
+      "topics": [
+        "Health and Disease",
+        "Pathogens",
+        "Bacterial Diseases",
+        "Viral Diseases",
+        "Protozoan Diseases",
+        "Cancer",
+        "AIDS",
+        "Immunity",
+        "Vaccines",
+        "Drug and Alcohol Abuse"
+      ]
+    },
+    {
+      "name": "Animal Husbandry",
+      "topics": [
+        "Animal Breeding",
+        "Dairy Farming",
+        "Poultry Farming",
+        "Fisheries",
+        "Apiculture",
+        "Animal Products"
+      ]
+    },
+    {
+      "name": "Biology and Human Welfare",
+      "topics": [
+        "Human Health",
+        "Immunity",
+        "Disease Prevention",
+        "Public Health"
+      ]
+    },
+    {
+      "name": "Microbes in Human Welfare",
+      "topics": [
+        "Useful Microbes",
+        "Fermentation",
+        "Industrial Products",
+        "Antibiotics",
+        "Sewage Treatment",
+        "Biogas",
+        "Biofertilizers",
+        "Biocontrol"
+      ]
+    },
+    {
+      "name": "Biotechnology: Principles and Processes",
+      "topics": [
+        "Recombinant DNA Technology",
+        "Restriction Enzymes",
+        "Vectors",
+        "PCR",
+        "Gel Electrophoresis",
+        "Gene Transfer",
+        "Bioreactors"
+      ]
+    },
+    {
+      "name": "Biotechnology and Its Applications",
+      "topics": [
+        "GM Organisms",
+        "Insulin",
+        "Gene Therapy",
+        "Vaccines",
+        "Molecular Diagnosis",
+        "Transgenic Animals",
+        "Biosafety"
+      ]
+    },
+    {
+      "name": "Organisms and Populations",
+      "topics": [
+        "Organism and Environment",
+        "Abiotic Factors",
+        "Population Attributes",
+        "Population Growth",
+        "Adaptations",
+        "Population Interactions"
+      ]
+    },
+    {
+      "name": "Ecosystem",
+      "topics": [
+        "Ecosystem Structure",
+        "Productivity",
+        "Decomposition",
+        "Energy Flow",
+        "Food Chains",
+        "Ecological Pyramids",
+        "Nutrient Cycles"
+      ]
+    },
+    {
+      "name": "Biodiversity and Conservation",
+      "topics": [
+        "Biodiversity",
+        "Biodiversity Loss",
+        "Hotspots",
+        "Endangered Species",
+        "Conservation",
+        "Protected Areas"
+      ]
+    },
+    {
+      "name": "Environmental Issues",
+      "topics": [
+        "Air Pollution",
+        "Water Pollution",
+        "Solid Waste",
+        "Radioactive Pollution",
+        "Greenhouse Effect",
+        "Global Warming",
+        "Ozone Depletion",
+        "Deforestation"
+      ]
+    }
+  ]
+}

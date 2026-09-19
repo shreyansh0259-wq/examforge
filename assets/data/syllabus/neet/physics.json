@@ -1,0 +1,26 @@
+{
+  "exam": "NEET",
+  "subject": "Physics",
+  "units": [
+    {"name": "Physics and Measurement", "topics": ["Units and Measurements", "Errors in Measurement", "Dimensions", "Significant Figures"]},
+    {"name": "Kinematics", "topics": ["Motion in a Straight Line", "Motion in a Plane", "Vectors", "Projectile Motion", "Uniform Circular Motion"]},
+    {"name": "Laws of Motion", "topics": ["Newton's Laws", "Friction", "Circular Motion", "Centre of Mass", "Momentum"]},
+    {"name": "Work, Energy and Power", "topics": ["Work", "Kinetic Energy", "Potential Energy", "Power", "Conservation of Energy", "Collisions"]},
+    {"name": "Rotational Motion", "topics": ["Torque", "Angular Momentum", "Moment of Inertia", "Rotational Dynamics", "Rolling Motion"]},
+    {"name": "Gravitation", "topics": ["Universal Law of Gravitation", "Acceleration Due to Gravity", "Gravitational Potential", "Satellites", "Escape Velocity"]},
+    {"name": "Properties of Solids and Liquids", "topics": ["Elasticity", "Fluid Mechanics", "Surface Tension", "Viscosity", "Thermal Expansion", "Calorimetry"]},
+    {"name": "Thermodynamics", "topics": ["Thermal Equilibrium", "Laws of Thermodynamics", "Heat Engines", "Refrigerators", "Thermodynamic Processes"]},
+    {"name": "Kinetic Theory of Gases", "topics": ["Ideal Gas", "Kinetic Theory", "Degrees of Freedom", "Mean Free Path", "Specific Heat"]},
+    {"name": "Oscillations and Waves", "topics": ["Simple Harmonic Motion", "Oscillations", "Wave Motion", "Sound Waves", "Standing Waves", "Doppler Effect"]},
+    {"name": "Electrostatics", "topics": ["Electric Charge", "Coulomb's Law", "Electric Field", "Electric Potential", "Capacitance", "Dielectrics"]},
+    {"name": "Current Electricity", "topics": ["Electric Current", "Ohm's Law", "Resistance", "Kirchhoff's Laws", "Wheatstone Bridge", "Potentiometer"]},
+    {"name": "Magnetic Effects of Current and Magnetism", "topics": ["Biot-Savart Law", "Ampere's Law", "Lorentz Force", "Magnetic Dipole", "Magnetic Materials"]},
+    {"name": "Electromagnetic Induction and Alternating Currents", "topics": ["Faraday's Law", "Lenz's Law", "Self Induction", "Mutual Induction", "AC Circuits", "Transformers"]},
+    {"name": "Electromagnetic Waves", "topics": ["Electromagnetic Spectrum", "Properties of EM Waves", "Applications"]},
+    {"name": "Optics", "topics": ["Ray Optics", "Optical Instruments", "Wave Optics", "Interference", "Diffraction", "Polarization"]},
+    {"name": "Dual Nature of Matter and Radiation", "topics": ["Photoelectric Effect", "Photons", "Matter Waves", "de Broglie Hypothesis"]},
+    {"name": "Atoms and Nuclei", "topics": ["Atomic Models", "Bohr Model", "Hydrogen Spectrum", "Nuclear Physics", "Radioactivity", "Nuclear Fission and Fusion"]},
+    {"name": "Electronic Devices", "topics": ["Semiconductors", "Diodes", "Transistors", "Logic Gates", "Digital Electronics"]},
+    {"name": "Experimental Skills", "topics": ["Measurement Instruments", "Experimental Errors", "Graph Analysis", "Experimental Physics"] }
+  ]
+}

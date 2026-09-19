@@ -1,0 +1,21 @@
+{
+  "exam": "NEET",
+  "subjects": [
+    {
+      "name": "Physics",
+      "chapters": []
+    },
+    {
+      "name": "Chemistry",
+      "chapters": []
+    },
+    {
+      "name": "Botany",
+      "chapters": []
+    },
+    {
+      "name": "Zoology",
+      "chapters": []
+    }
+  ]
+}

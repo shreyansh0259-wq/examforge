@@ -1,0 +1,263 @@
+{
+  "exam": "NEET",
+  "subject": "Botany",
+  "units": [
+    {
+      "name": "The Living World",
+      "topics": [
+        "What is Living",
+        "Biodiversity",
+        "Taxonomic Categories",
+        "Taxonomical Aids"
+      ]
+    },
+    {
+      "name": "Biological Classification",
+      "topics": [
+        "Five Kingdom Classification",
+        "Monera",
+        "Protista",
+        "Fungi",
+        "Plantae",
+        "Animalia",
+        "Viruses",
+        "Viroids",
+        "Lichens"
+      ]
+    },
+    {
+      "name": "Plant Kingdom",
+      "topics": [
+        "Algae",
+        "Bryophytes",
+        "Pteridophytes",
+        "Gymnosperms",
+        "Angiosperms",
+        "Plant Life Cycles",
+        "Alternation of Generations"
+      ]
+    },
+    {
+      "name": "Morphology of Flowering Plants",
+      "topics": [
+        "Root",
+        "Stem",
+        "Leaf",
+        "Inflorescence",
+        "Flower",
+        "Fruit",
+        "Seed",
+        "Families of Flowering Plants"
+      ]
+    },
+    {
+      "name": "Anatomy of Flowering Plants",
+      "topics": [
+        "Plant Tissues",
+        "Meristematic Tissue",
+        "Permanent Tissue",
+        "Tissue Systems",
+        "Internal Structure of Root",
+        "Internal Structure of Stem",
+        "Internal Structure of Leaf",
+        "Secondary Growth"
+      ]
+    },
+    {
+      "name": "Cell: The Unit of Life",
+      "topics": [
+        "Cell Theory",
+        "Prokaryotic Cell",
+        "Eukaryotic Cell",
+        "Cell Organelles",
+        "Plasma Membrane",
+        "Cell Wall",
+        "Nucleus",
+        "Cytoplasm"
+      ]
+    },
+    {
+      "name": "Biomolecules",
+      "topics": [
+        "Carbohydrates",
+        "Proteins",
+        "Lipids",
+        "Nucleic Acids",
+        "Enzymes",
+        "Primary and Secondary Metabolites"
+      ]
+    },
+    {
+      "name": "Cell Cycle and Cell Division",
+      "topics": [
+        "Cell Cycle",
+        "Interphase",
+        "Mitosis",
+        "Meiosis",
+        "Significance of Cell Division"
+      ]
+    },
+    {
+      "name": "Transport in Plants",
+      "topics": [
+        "Water Transport",
+        "Diffusion",
+        "Osmosis",
+        "Plasmolysis",
+        "Water Potential",
+        "Transpiration",
+        "Phloem Transport",
+        "Pressure Flow Hypothesis"
+      ]
+    },
+    {
+      "name": "Mineral Nutrition",
+      "topics": [
+        "Essential Elements",
+        "Macronutrients",
+        "Micronutrients",
+        "Deficiency Symptoms",
+        "Nitrogen Metabolism",
+        "Nitrogen Fixation"
+      ]
+    },
+    {
+      "name": "Photosynthesis in Plants",
+      "topics": [
+        "Photosynthetic Pigments",
+        "Light Reaction",
+        "Photophosphorylation",
+        "Electron Transport",
+        "Calvin Cycle",
+        "C4 Pathway",
+        "Photorespiration",
+        "Factors Affecting Photosynthesis"
+      ]
+    },
+    {
+      "name": "Respiration in Plants",
+      "topics": [
+        "Glycolysis",
+        "Fermentation",
+        "Krebs Cycle",
+        "Electron Transport System",
+        "Oxidative Phosphorylation",
+        "Respiratory Quotient"
+      ]
+    },
+    {
+      "name": "Plant Growth and Development",
+      "topics": [
+        "Growth",
+        "Phases of Growth",
+        "Plant Growth Regulators",
+        "Auxins",
+        "Gibberellins",
+        "Cytokinins",
+        "Ethylene",
+        "Abscisic Acid",
+        "Photoperiodism",
+        "Vernalisation"
+      ]
+    },
+    {
+      "name": "Sexual Reproduction in Flowering Plants",
+      "topics": [
+        "Flower Structure",
+        "Microsporogenesis",
+        "Megasporogenesis",
+        "Pollination",
+        "Pollen-Pistil Interaction",
+        "Double Fertilization",
+        "Endosperm",
+        "Embryo",
+        "Seed and Fruit Formation",
+        "Apomixis"
+      ]
+    },
+    {
+      "name": "Principles of Inheritance and Variation",
+      "topics": [
+        "Mendel's Laws",
+        "Monohybrid Cross",
+        "Dihybrid Cross",
+        "Chromosomal Theory",
+        "Linkage",
+        "Crossing Over",
+        "Sex Determination",
+        "Sex-linked Inheritance",
+        "Mutation",
+        "Genetic Disorders"
+      ]
+    },
+    {
+      "name": "Molecular Basis of Inheritance",
+      "topics": [
+        "DNA Structure",
+        "RNA Structure",
+        "DNA Replication",
+        "Transcription",
+        "Genetic Code",
+        "Translation",
+        "Gene Regulation",
+        "Lac Operon",
+        "Human Genome Project",
+        "DNA Fingerprinting"
+      ]
+    },
+    {
+      "name": "Evolution",
+      "topics": [
+        "Origin of Life",
+        "Evidence of Evolution",
+        "Darwinism",
+        "Natural Selection",
+        "Modern Synthetic Theory",
+        "Hardy-Weinberg Principle",
+        "Adaptive Radiation",
+        "Human Evolution"
+      ]
+    },
+    {
+      "name": "Biotechnology: Principles and Processes",
+      "topics": [
+        "Recombinant DNA Technology",
+        "Restriction Enzymes",
+        "Cloning Vectors",
+        "PCR",
+        "Gel Electrophoresis",
+        "Gene Transfer",
+        "Bioreactors",
+        "Downstream Processing"
+      ]
+    },
+    {
+      "name": "Biotechnology and Its Applications",
+      "topics": [
+        "Genetically Modified Organisms",
+        "Insulin Production",
+        "Gene Therapy",
+        "Vaccines",
+        "Molecular Diagnosis",
+        "Transgenic Animals",
+        "Biosafety",
+        "Biopatents"
+      ]
+    },
+    {
+      "name": "Ecology and Environment",
+      "topics": [
+        "Organisms and Environment",
+        "Population Ecology",
+        "Population Interactions",
+        "Ecosystem",
+        "Energy Flow",
+        "Food Chains",
+        "Ecological Pyramids",
+        "Biodiversity",
+        "Conservation",
+        "Environmental Issues"
+      ]
+    }
+  ]
+}

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'importer/question_importer.dart';
+import 'services/syllabus_service.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -162,6 +163,79 @@ class _TestSetupScreenState extends State<TestSetupScreen> {
             const SizedBox(height: 20),
 
             const Text(
+              const Text(
+                'Select Chapter',
+                style: TextStyle(
+                  fontSize: 20,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+
+              const SizedBox(height: 10),
+
+              if (loadingChapters)
+                const Center(
+                  child: CircularProgressIndicator(),
+                )
+              else
+                DropdownButtonFormField<String>(
+                  value: selectedChapter,
+                  decoration: const InputDecoration(
+                    border: OutlineInputBorder(),
+                    labelText: 'Chapter',
+                  ),
+                  items: chapters.map((chapter) {
+                    final name = chapter['name'] as String;
+                    return DropdownMenuItem<String>(
+                      value: name,
+                      child: Text(name),
+                    );
+                  }).toList(),
+                  onChanged: (value) {
+                    setState(() {
+                      selectedChapter = value;
+                      selectedTopics = {};
+                    });
+                  },
+                ),
+
+              if (selectedChapter != null) ...[
+                const SizedBox(height: 20),
+
+                const Text(
+                  'Select Topics',
+                  style: TextStyle(
+                    fontSize: 20,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+
+                const SizedBox(height: 10),
+
+                ...chapters
+                    .where((chapter) => chapter['name'] == selectedChapter)
+                    .expand(
+                      (chapter) =>
+                          List<String>.from(chapter['topics'] ?? []),
+                    )
+                    .map(
+                      (topic) => CheckboxListTile(
+                        title: Text(topic),
+                        value: selectedTopics.contains(topic),
+                        onChanged: (value) {
+                          setState(() {
+                            if (value == true) {
+                              selectedTopics.add(topic);
+                            } else {
+                              selectedTopics.remove(topic);
+                            }
+                          });
+                        },
+                      ),
+                    ),
+              ],
+
+              const SizedBox(height: 20),
               'Number of Questions',
               style: TextStyle(
                 fontSize: 20,

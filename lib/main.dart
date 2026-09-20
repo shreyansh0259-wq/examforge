@@ -90,10 +90,12 @@ class _TestSetupScreenState extends State<TestSetupScreen> {
   Set<String> selectedTopics = {};
   List<Map<String, dynamic>> chapters = [];
   bool loadingChapters = false;
+  String? chapterError;
 
   Future<void> loadChapters(String subject) async {
     setState(() {
       loadingChapters = true;
+      chapterError = null;
       selectedChapter = null;
       selectedTopics = {};
     });
@@ -117,6 +119,7 @@ class _TestSetupScreenState extends State<TestSetupScreen> {
       setState(() {
         chapters = [];
         loadingChapters = false;
+        chapterError = e.toString();
       });
     }
   }
@@ -224,6 +227,11 @@ class _TestSetupScreenState extends State<TestSetupScreen> {
               if (loadingChapters)
                 const Center(
                   child: CircularProgressIndicator(),
+                )
+              else if (chapterError != null)
+                Text(
+                  'Chapter loading error: $chapterError',
+                  style: const TextStyle(color: Colors.red),
                 )
               else
                 DropdownButtonFormField<String>(

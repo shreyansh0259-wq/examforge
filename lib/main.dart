@@ -111,6 +111,7 @@ class _TestSetupScreenState extends State<TestSetupScreen> {
         loadingChapters = false;
       });
     } catch (e) {
+      debugPrint('loadChapters error: $e');
       if (!mounted) return;
 
       setState(() {

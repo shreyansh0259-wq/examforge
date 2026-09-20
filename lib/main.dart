@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'importer/question_importer.dart';
 import 'services/syllabus_service.dart';
+import 'models/test_selection.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -10,6 +11,8 @@ Future<void> main() async {
 
 class ExamForgeApp extends StatelessWidget {
   const ExamForgeApp({super.key});
+
+
 
   @override
   Widget build(BuildContext context) {
@@ -57,6 +60,29 @@ class TestSetupScreen extends StatefulWidget {
 }
 
 class _TestSetupScreenState extends State<TestSetupScreen> {
+  bool canContinue() {
+    if (selectedSubjects.isEmpty) {
+      return false;
+    }
+
+    for (final subject in selectedSubjects) {
+      final selection = testSelection.getOrCreate(subject);
+
+      if (selection.chapter == null) {
+        return false;
+      }
+
+      if (subjectLoading[subject] == true) {
+        return false;
+      }
+
+      if (subjectErrors[subject] != null) {
+        return false;
+      }
+    }
+
+    return true;
+  }
   String selectedExam = 'NEET';
 
   int questionCount = 50;
@@ -86,18 +112,17 @@ class _TestSetupScreenState extends State<TestSetupScreen> {
 
   final SyllabusService _syllabusService = SyllabusService();
 
-  String? selectedChapter;
-  Set<String> selectedTopics = {};
-  List<Map<String, dynamic>> chapters = [];
-  bool loadingChapters = false;
-  String? chapterError;
+  final TestSelection testSelection = TestSelection();
+
+
+  final Map<String, List<Map<String, dynamic>>> subjectChapters = {};
+  final Map<String, bool> subjectLoading = {};
+  final Map<String, String?> subjectErrors = {};
 
   Future<void> loadChapters(String subject) async {
     setState(() {
-      loadingChapters = true;
-      chapterError = null;
-      selectedChapter = null;
-      selectedTopics = {};
+      subjectLoading[subject] = true;
+      subjectErrors[subject] = null;
     });
 
     try {
@@ -109,17 +134,18 @@ class _TestSetupScreenState extends State<TestSetupScreen> {
       if (!mounted) return;
 
       setState(() {
-        chapters = result;
-        loadingChapters = false;
+        subjectChapters[subject] = result;
+        subjectLoading[subject] = false;
       });
     } catch (e) {
-      debugPrint('loadChapters error: $e');
+      debugPrint('loadChapters error for $subject: $e');
+
       if (!mounted) return;
 
       setState(() {
-        chapters = [];
-        loadingChapters = false;
-        chapterError = e.toString();
+        subjectChapters[subject] = [];
+        subjectLoading[subject] = false;
+        subjectErrors[subject] = e.toString();
       });
     }
   }
@@ -127,17 +153,27 @@ class _TestSetupScreenState extends State<TestSetupScreen> {
   @override
   void initState() {
     super.initState();
-    loadChapters('Physics');
+
+    for (final subject in selectedSubjects) {
+      testSelection.selectSubject(subject);
+    }
+
+    for (final subject in selectedSubjects) {
+      loadChapters(subject);
+    }
   }
 
 
   void changeExam(String exam) {
     setState(() {
       selectedExam = exam;
+      testSelection.clear();
       selectedSubjects = subjects[exam]!.toSet();
-      selectedChapter = null;
-      selectedTopics = {};
-      chapters = [];
+
+      for (final subject in selectedSubjects) {
+        testSelection.selectSubject(subject);
+      }
+
     });
 
     loadChapters(subjects[exam]!.first);
@@ -204,8 +240,10 @@ class _TestSetupScreenState extends State<TestSetupScreen> {
                   setState(() {
                     if (value == true) {
                       selectedSubjects.add(subject);
+                      testSelection.selectSubject(subject);
                     } else {
                       selectedSubjects.remove(subject);
+                      testSelection.removeSubject(subject);
                     }
                   });
                 },
@@ -215,7 +253,7 @@ class _TestSetupScreenState extends State<TestSetupScreen> {
             const SizedBox(height: 20),
 
               const Text(
-                'Select Chapter',
+                'Select Chapters & Topics',
                 style: TextStyle(
                   fontSize: 20,
                   fontWeight: FontWeight.bold,
@@ -224,72 +262,105 @@ class _TestSetupScreenState extends State<TestSetupScreen> {
 
               const SizedBox(height: 10),
 
-              if (loadingChapters)
-                const Center(
-                  child: CircularProgressIndicator(),
-                )
-              else if (chapterError != null)
-                Text(
-                  'Chapter loading error: $chapterError',
-                  style: const TextStyle(color: Colors.red),
-                )
-              else
-                DropdownButtonFormField<String>(
-                  value: selectedChapter,
-                  decoration: const InputDecoration(
-                    border: OutlineInputBorder(),
-                    labelText: 'Chapter',
-                  ),
-                  items: chapters.map((chapter) {
-                    final name = chapter['name'] as String;
-                    return DropdownMenuItem<String>(
-                      value: name,
-                      child: Text(name),
-                    );
-                  }).toList(),
-                  onChanged: (value) {
-                    setState(() {
-                      selectedChapter = value;
-                      selectedTopics = {};
-                    });
-                  },
-                ),
+              ...selectedSubjects.map((subject) {
+                final selection = testSelection.getOrCreate(subject);
+                final subjectChapterList = subjectChapters[subject] ?? [];
+                final isLoading = subjectLoading[subject] ?? false;
+                final error = subjectErrors[subject];
 
-              if (selectedChapter != null) ...[
-                const SizedBox(height: 20),
+                return Card(
+                  margin: const EdgeInsets.only(bottom: 16),
+                  child: Padding(
+                    padding: const EdgeInsets.all(12),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          subject,
+                          style: const TextStyle(
+                            fontSize: 18,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
 
-                const Text(
-                  'Select Topics',
-                  style: TextStyle(
-                    fontSize: 20,
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
+                        const SizedBox(height: 10),
 
-                const SizedBox(height: 10),
+                        if (isLoading)
+                          const Center(
+                            child: CircularProgressIndicator(),
+                          )
+                        else if (error != null)
+                          Text(
+                            'Chapter loading error: $error',
+                            style: const TextStyle(color: Colors.red),
+                          )
+                        else
+                          DropdownButtonFormField<String>(
+                            value: selection.chapter,
+                            decoration: const InputDecoration(
+                              border: OutlineInputBorder(),
+                              labelText: 'Chapter',
+                            ),
+                            items: subjectChapterList.map((chapter) {
+                              final name = chapter['name'] as String;
+                              return DropdownMenuItem<String>(
+                                value: name,
+                                child: Text(name),
+                              );
+                            }).toList(),
+                            onChanged: (value) {
+                              setState(() {
+                                selection.chapter = value;
+                                selection.topics.clear();
+                              });
+                            },
+                          ),
 
-                ...chapters
-                    .where((chapter) => chapter['name'] == selectedChapter)
-                    .expand(
-                      (chapter) =>
-                          List<String>.from(chapter['topics'] ?? []),
-                    )
-                    .map(
-                      (topic) => CheckboxListTile(
-                        title: Text(topic),
-                        value: selectedTopics.contains(topic),
-                        onChanged: (value) {
-                          setState(() {
-                            if (value == true) {
-                              selectedTopics.add(topic);
-                            } else {
-                              selectedTopics.remove(topic);
-                            }
-                          });
-                        },
-                      ),
+                        if (selection.chapter != null) ...[
+                          const SizedBox(height: 15),
+
+                          const Text(
+                            'Topics',
+                            style: TextStyle(
+                              fontSize: 17,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+
+                          const SizedBox(height: 5),
+
+                          ...subjectChapterList
+                              .where(
+                                (chapter) =>
+                                    chapter['name'] == selection.chapter,
+                              )
+                              .expand(
+                                (chapter) =>
+                                    List<String>.from(
+                                  chapter['topics'] ?? [],
+                                ),
+                              )
+                              .map(
+                                (topic) => CheckboxListTile(
+                                  title: Text(topic),
+                                  value: selection.topics.contains(topic),
+                                  onChanged: (value) {
+                                    setState(() {
+                                      if (value == true) {
+                                        selection.topics.add(topic);
+                                      } else {
+                                        selection.topics.remove(topic);
+                                      }
+                                    });
+                                  },
+                                ),
+                              ),
+                        ],
+                      ],
                     ),
-              ],
+                  ),
+                );
+              }),
 
               const SizedBox(height: 20),
                 const Text(
@@ -345,9 +416,9 @@ class _TestSetupScreenState extends State<TestSetupScreen> {
             SizedBox(
               width: double.infinity,
               child: ElevatedButton(
-                onPressed: selectedSubjects.isEmpty
-                    ? null
-                    : () {},
+                onPressed: canContinue()
+                    ? () {}
+                    : null,
                 child: const Text('Continue'),
               ),
             ),

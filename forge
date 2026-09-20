@@ -1,0 +1,40 @@
+#!/data/data/com.termux/files/usr/bin/bash
+
+set -e
+
+case "$1" in
+  check)
+    echo "Checking Git working tree..."
+    git status --short
+    echo "Done."
+    ;;
+
+  commit)
+    if [ -z "$2" ]; then
+      echo "Usage: ./forge commit \"message\""
+      exit 1
+    fi
+    git add .
+    git diff --cached --check
+    git commit -m "$2"
+    ;;
+
+  push)
+    git push origin v2
+    ;;
+
+  build)
+    echo "Build is handled by GitHub Actions."
+    echo "Push the current v2 branch and start the workflow from GitHub."
+    ;;
+
+  *)
+    echo "ExamForge Forge"
+    echo
+    echo "Usage:"
+    echo "  ./forge check"
+    echo "  ./forge commit \"message\""
+    echo "  ./forge push"
+    echo "  ./forge build"
+    ;;
+esac

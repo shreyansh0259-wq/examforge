@@ -1,0 +1,21 @@
+{
+  "exam": "JEE Main",
+  "subject": "Mathematics",
+  "units": [
+    {"name":"Sets, Relations and Functions","topics":["Sets","Representation of Sets","Types of Sets","Venn Diagrams","Union","Intersection","Difference","Complement","Relations","Equivalence Relations","Functions","One-One Functions","Onto Functions","Composite Functions","Inverse Functions"]},
+    {"name":"Complex Numbers and Quadratic Equations","topics":["Complex Numbers","Algebra of Complex Numbers","Argand Plane","Modulus","Argument","Conjugate","Square Root of Complex Number","Quadratic Equations","Roots of Quadratic Equation","Nature of Roots","Relations Between Roots and Coefficients","Formation of Quadratic Equation"]},
+    {"name":"Matrices and Determinants","topics":["Matrices","Types of Matrices","Matrix Operations","Transpose","Symmetric Matrix","Skew-Symmetric Matrix","Determinants","Properties of Determinants","Area of Triangle","Minors","Cofactors","Adjoint","Inverse of Matrix","System of Linear Equations","Matrix Method","Cramer's Rule"]},
+    {"name":"Permutations and Combinations","topics":["Fundamental Principle of Counting","Permutation","Combination","Factorial","Circular Permutation","Restricted Permutations","Restricted Combinations"]},
+    {"name":"Binomial Theorem","topics":["Binomial Theorem","General Term","Middle Term","Binomial Coefficients","Properties of Binomial Coefficients"]},
+    {"name":"Sequence and Series","topics":["Sequences","Arithmetic Progression","Geometric Progression","Arithmetic Mean","Geometric Mean","Sum of AP","Sum of GP","Special Series","AM-GM Inequality"]},
+    {"name":"Limit, Continuity and Differentiability","topics":["Limits","Algebra of Limits","Standard Limits","Continuity","Continuity of Functions","Differentiability","Differentiation","Derivative of Composite Functions","Implicit Differentiation","Logarithmic Differentiation","Higher Order Derivatives","Rolle's Theorem","Lagrange's Mean Value Theorem"]},
+    {"name":"Integral Calculus","topics":["Indefinite Integration","Integration as Inverse of Differentiation","Standard Integrals","Substitution Method","Integration by Parts","Partial Fractions","Definite Integrals","Properties of Definite Integrals","Area Under Curves","Fundamental Theorem of Calculus"]},
+    {"name":"Differential Equations","topics":["Differential Equations","Order and Degree","Formation of Differential Equations","Variable Separable Method","Homogeneous Differential Equations","Linear Differential Equations","First Order Differential Equations"]},
+    {"name":"Coordinate Geometry","topics":["Cartesian Coordinates","Distance Formula","Section Formula","Midpoint","Slope","Straight Lines","Different Forms of Straight Line","Angle Between Lines","Distance Between Lines","Circle","Standard Equation of Circle","Tangent to Circle","Normal to Circle","Conic Sections","Parabola","Ellipse","Hyperbola"]},
+    {"name":"Three Dimensional Geometry","topics":["Coordinates in Space","Distance Between Two Points","Section Formula","Direction Ratios","Direction Cosines","Equation of Line","Angle Between Two Lines","Shortest Distance Between Two Lines","Plane","Equation of Plane","Angle Between Planes","Distance of Point From Plane"]},
+    {"name":"Vector Algebra","topics":["Vectors","Types of Vectors","Addition of Vectors","Scalar Multiplication","Section Formula","Scalar Product","Vector Product","Scalar Triple Product","Vector Triple Product","Geometrical Applications"]},
+    {"name":"Statistics and Probability","topics":["Measures of Dispersion","Mean","Variance","Standard Deviation","Probability","Addition Theorem","Multiplication Theorem","Conditional Probability","Independent Events","Bayes' Theorem","Random Variable","Probability Distribution"]},
+    {"name":"Trigonometry","topics":["Trigonometric Functions","Trigonometric Ratios","Trigonometric Identities","Trigonometric Equations","Inverse Trigonometric Functions","Properties of Inverse Trigonometric Functions","Heights and Distances"]},
+    {"name":"Mathematical Reasoning","topics":["Statements","Logical Connectives","Negation","Compound Statements","Implication","Converse","Contrapositive","Mathematical Induction"]}
+  ]
+}

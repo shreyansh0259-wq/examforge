@@ -22,6 +22,8 @@ flutter:
     - assets/data/
     - assets/data/syllabus/
     - assets/data/syllabus/neet/
+    - assets/data/syllabus/jee_main/
+    - assets/data/syllabus/jee_advanced/
     - assets/data/questions/
     - assets/data/questions/neet/
     - assets/data/schema/

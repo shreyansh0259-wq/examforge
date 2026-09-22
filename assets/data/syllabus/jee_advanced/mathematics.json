@@ -1,0 +1,72 @@
+{
+  "subject": "Mathematics",
+  "units": [
+    {
+      "name": "Algebra",
+      "topics": [
+        "Sets",
+        "Relations and Functions",
+        "Complex Numbers",
+        "Quadratic Equations",
+        "Sequences and Series",
+        "Permutations and Combinations",
+        "Binomial Theorem",
+        "Mathematical Induction",
+        "Matrices",
+        "Determinants",
+        "Probability",
+        "Statistics"
+      ]
+    },
+    {
+      "name": "Trigonometry",
+      "topics": [
+        "Trigonometric Functions",
+        "Trigonometric Equations",
+        "Inverse Trigonometric Functions",
+        "Properties of Triangles"
+      ]
+    },
+    {
+      "name": "Analytical Geometry",
+      "topics": [
+        "Straight Lines",
+        "Circles",
+        "Parabola",
+        "Ellipse",
+        "Hyperbola",
+        "Three Dimensional Geometry"
+      ]
+    },
+    {
+      "name": "Differential Calculus",
+      "topics": [
+        "Limits",
+        "Continuity",
+        "Differentiability",
+        "Differentiation",
+        "Applications of Derivatives"
+      ]
+    },
+    {
+      "name": "Integral Calculus",
+      "topics": [
+        "Indefinite Integrals",
+        "Definite Integrals",
+        "Properties of Definite Integrals",
+        "Area Under Curves",
+        "Differential Equations"
+      ]
+    },
+    {
+      "name": "Vector Algebra",
+      "topics": [
+        "Vectors",
+        "Addition of Vectors",
+        "Scalar Product",
+        "Vector Product",
+        "Scalar Triple Product"
+      ]
+    }
+  ]
+}

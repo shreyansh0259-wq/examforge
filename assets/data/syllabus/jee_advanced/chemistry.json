@@ -1,0 +1,63 @@
+{
+  "subject": "Chemistry",
+  "units": [
+    {
+      "name": "Physical Chemistry",
+      "topics": [
+        "Some Basic Concepts of Chemistry",
+        "Mole Concept",
+        "Stoichiometry",
+        "Atomic Structure",
+        "Chemical Bonding",
+        "States of Matter",
+        "Chemical Thermodynamics",
+        "Thermochemistry",
+        "Chemical Equilibrium",
+        "Ionic Equilibrium",
+        "Redox Reactions",
+        "Electrochemistry",
+        "Chemical Kinetics",
+        "Solutions",
+        "Solid State",
+        "Surface Chemistry"
+      ]
+    },
+    {
+      "name": "Inorganic Chemistry",
+      "topics": [
+        "Periodic Classification of Elements",
+        "Periodic Properties",
+        "Hydrogen",
+        "s-Block Elements",
+        "p-Block Elements",
+        "d-Block Elements",
+        "f-Block Elements",
+        "Coordination Compounds",
+        "Metallurgy",
+        "Qualitative Analysis",
+        "Environmental Chemistry"
+      ]
+    },
+    {
+      "name": "Organic Chemistry",
+      "topics": [
+        "Purification and Characterisation",
+        "General Organic Chemistry",
+        "Isomerism",
+        "Hydrocarbons",
+        "Haloalkanes and Haloarenes",
+        "Alcohols",
+        "Phenols",
+        "Ethers",
+        "Aldehydes",
+        "Ketones",
+        "Carboxylic Acids",
+        "Amines",
+        "Biomolecules",
+        "Polymers",
+        "Chemistry in Everyday Life",
+        "Practical Organic Chemistry"
+      ]
+    }
+  ]
+}

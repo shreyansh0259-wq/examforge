@@ -169,6 +169,9 @@ class _TestSetupScreenState extends State<TestSetupScreen> {
       selectedExam = exam;
       testSelection.clear();
       selectedSubjects = subjects[exam]!.toSet();
+      subjectChapters.clear();
+      subjectLoading.clear();
+      subjectErrors.clear();
 
       for (final subject in selectedSubjects) {
         testSelection.selectSubject(subject);
@@ -176,7 +179,9 @@ class _TestSetupScreenState extends State<TestSetupScreen> {
 
     });
 
-    loadChapters(subjects[exam]!.first);
+    for (final subject in selectedSubjects) {
+      loadChapters(subject);
+    }
   }
 
   @override
@@ -246,6 +251,10 @@ class _TestSetupScreenState extends State<TestSetupScreen> {
                       testSelection.removeSubject(subject);
                     }
                   });
+
+                  if (value == true) {
+                    loadChapters(subject);
+                  }
                 },
               );
             }),

@@ -1,0 +1,97 @@
+{
+  "subject": "Physics",
+  "units": [
+    {
+      "name": "General",
+      "topics": [
+        "Units and dimensions",
+        "Dimensional analysis",
+        "Significant figures",
+        "Errors in measurement",
+        "Experimental skills"
+      ]
+    },
+    {
+      "name": "Mechanics",
+      "topics": [
+        "Kinematics",
+        "Newton's laws of motion",
+        "Friction",
+        "Work, energy and power",
+        "Centre of mass",
+        "Linear momentum",
+        "Collision",
+        "Rotational motion",
+        "Moment of inertia",
+        "Angular momentum",
+        "Gravitation",
+        "Simple harmonic motion",
+        "Waves"
+      ]
+    },
+    {
+      "name": "Properties of Matter",
+      "topics": [
+        "Elasticity",
+        "Fluid pressure",
+        "Surface tension",
+        "Viscosity",
+        "Fluid dynamics",
+        "Thermal expansion"
+      ]
+    },
+    {
+      "name": "Thermal Physics",
+      "topics": [
+        "Heat",
+        "Temperature",
+        "Calorimetry",
+        "Heat transfer",
+        "Kinetic theory of gases",
+        "Thermodynamics",
+        "Thermal processes"
+      ]
+    },
+    {
+      "name": "Electrodynamics",
+      "topics": [
+        "Electric charge",
+        "Electric field",
+        "Electric potential",
+        "Capacitance",
+        "Current electricity",
+        "Kirchhoff's laws",
+        "Magnetic field",
+        "Moving charges",
+        "Electromagnetic induction",
+        "Alternating current",
+        "Electromagnetic waves"
+      ]
+    },
+    {
+      "name": "Optics",
+      "topics": [
+        "Geometrical optics",
+        "Reflection",
+        "Refraction",
+        "Optical instruments",
+        "Interference",
+        "Diffraction",
+        "Polarisation"
+      ]
+    },
+    {
+      "name": "Modern Physics",
+      "topics": [
+        "Photoelectric effect",
+        "Dual nature of matter",
+        "Atoms",
+        "Nuclei",
+        "Radioactivity",
+        "Nuclear reactions",
+        "Semiconductors",
+        "Electronic devices"
+      ]
+    }
+  ]
+}

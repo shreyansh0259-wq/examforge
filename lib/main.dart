@@ -68,7 +68,12 @@ class _TestSetupScreenState extends State<TestSetupScreen> {
     for (final subject in selectedSubjects) {
       final selection = testSelection.getOrCreate(subject);
 
-      if (selection.chapter == null) {
+      if (selection.chapters.isEmpty) {
+        return false;
+      }
+
+      if (selection.questionCount < 1 ||
+          selection.questionCount > 500) {
         return false;
       }
 
@@ -85,7 +90,6 @@ class _TestSetupScreenState extends State<TestSetupScreen> {
   }
   String selectedExam = 'NEET';
 
-  int questionCount = 50;
   int testTime = 60;
 
   final List<String> exams = [
@@ -294,6 +298,45 @@ class _TestSetupScreenState extends State<TestSetupScreen> {
 
                         const SizedBox(height: 10),
 
+                        TextFormField(
+                          initialValue: selection.questionCount.toString(),
+                          keyboardType: TextInputType.number,
+                          decoration: const InputDecoration(
+                            border: OutlineInputBorder(),
+                            labelText: 'Number of Questions',
+                            hintText: 'Enter 1-500',
+                          ),
+                          onChanged: (value) {
+                            final count = int.tryParse(value);
+                            if (count != null && count >= 1 && count <= 500) {
+                              selection.questionCount = count;
+                            }
+                          },
+                        ),
+
+                        const SizedBox(height: 10),
+
+                        DropdownButtonFormField<String>(
+                          value: selection.difficulty,
+                          decoration: const InputDecoration(
+                            border: OutlineInputBorder(),
+                            labelText: 'Difficulty',
+                          ),
+                          items: DifficultyLevels.all.map((level) {
+                            return DropdownMenuItem<String>(
+                              value: level,
+                              child: Text(level),
+                            );
+                          }).toList(),
+                          onChanged: (value) {
+                            setState(() {
+                              selection.difficulty = value;
+                            });
+                          },
+                        ),
+
+                        const SizedBox(height: 10),
+
                         if (isLoading)
                           const Center(
                             child: CircularProgressIndicator(),
@@ -305,7 +348,9 @@ class _TestSetupScreenState extends State<TestSetupScreen> {
                           )
                         else
                           DropdownButtonFormField<String>(
-                            value: selection.chapter,
+                            value: selection.chapters.isEmpty
+                                ? null
+                                : selection.chapters.keys.first,
                             decoration: const InputDecoration(
                               border: OutlineInputBorder(),
                               labelText: 'Chapter',
@@ -319,13 +364,15 @@ class _TestSetupScreenState extends State<TestSetupScreen> {
                             }).toList(),
                             onChanged: (value) {
                               setState(() {
-                                selection.chapter = value;
-                                selection.topics.clear();
+                                selection.chapters.clear();
+                                if (value != null) {
+                                  selection.getOrCreateChapter(value);
+                                }
                               });
                             },
                           ),
 
-                        if (selection.chapter != null) ...[
+                        if (selection.chapters.isNotEmpty) ...[
                           const SizedBox(height: 15),
 
                           const Text(
@@ -341,7 +388,8 @@ class _TestSetupScreenState extends State<TestSetupScreen> {
                           ...subjectChapterList
                               .where(
                                 (chapter) =>
-                                    chapter['name'] == selection.chapter,
+                                    chapter['name'] ==
+                                    selection.chapters.keys.first,
                               )
                               .expand(
                                 (chapter) =>
@@ -352,13 +400,21 @@ class _TestSetupScreenState extends State<TestSetupScreen> {
                               .map(
                                 (topic) => CheckboxListTile(
                                   title: Text(topic),
-                                  value: selection.topics.contains(topic),
+                                  value: selection
+                                      .chapters
+                                      .values
+                                      .first
+                                      .topics
+                                      .contains(topic),
                                   onChanged: (value) {
                                     setState(() {
+                                      final chapterSelection =
+                                          selection.chapters.values.first;
+
                                       if (value == true) {
-                                        selection.topics.add(topic);
+                                        chapterSelection.topics.add(topic);
                                       } else {
-                                        selection.topics.remove(topic);
+                                        chapterSelection.topics.remove(topic);
                                       }
                                     });
                                   },
@@ -371,28 +427,14 @@ class _TestSetupScreenState extends State<TestSetupScreen> {
                 );
               }),
 
-              const SizedBox(height: 20),
-                const Text(
-              'Number of Questions',
-              style: TextStyle(
-                fontSize: 20,
+            const SizedBox(height: 20),
+
+            Text(
+              'Total Questions: ${testSelection.totalQuestions}',
+              style: const TextStyle(
+                fontSize: 18,
                 fontWeight: FontWeight.bold,
               ),
-            ),
-
-            Text('$questionCount Questions'),
-
-            Slider(
-              min: 1,
-              max: 500,
-              divisions: 499,
-              value: questionCount.toDouble(),
-              label: '$questionCount',
-              onChanged: (value) {
-                setState(() {
-                  questionCount = value.round();
-                });
-              },
             ),
 
             const SizedBox(height: 20),

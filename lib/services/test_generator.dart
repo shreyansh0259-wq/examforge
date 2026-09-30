@@ -1,32 +1,79 @@
 import '../models/question.dart';
+import '../models/test_selection.dart';
 import 'question_service.dart';
 
 class TestGenerator {
   final QuestionService _questionService = QuestionService();
 
-  Future<List<Question>> generateTest({
+  Future<List<Question>> generateFromSelection({
     required String exam,
-    String? subject,
-    String? chapter,
-    String? topic,
-    String? difficulty,
-    required int questionCount,
+    required TestSelection selection,
   }) async {
-    final questions = await _questionService.getQuestions(
-      exam: exam,
-      subject: subject,
-      chapter: chapter,
-      topic: topic,
-      difficulty: difficulty,
-    );
+    final allQuestions = <Question>[];
 
-    if (questions.length <= questionCount) {
-      return questions;
+    for (final subjectSelection in selection.subjects.values) {
+      final chapterNames = subjectSelection.chapters.keys.toList();
+
+      if (chapterNames.isEmpty) {
+        continue;
+      }
+
+      final questionCount = subjectSelection.questionCount;
+      final difficulty = subjectSelection.difficulty;
+
+      for (final chapter in chapterNames) {
+        final chapterSelection = subjectSelection.chapters[chapter]!;
+
+        final topics = chapterSelection.topics;
+
+        if (topics.isEmpty) {
+          final questions = await _questionService.getQuestions(
+            exam: exam,
+            subject: subjectSelection.subject,
+            chapter: chapter,
+            difficulty: difficulty,
+          );
+
+          allQuestions.addAll(
+            _takeRandom(questions, questionCount),
+          );
+        } else {
+          final chapterQuestions = <Question>[];
+
+          for (final topic in topics) {
+            final questions = await _questionService.getQuestions(
+              exam: exam,
+              subject: subjectSelection.subject,
+              chapter: chapter,
+              topic: topic,
+              difficulty: difficulty,
+            );
+
+            chapterQuestions.addAll(questions);
+          }
+
+          allQuestions.addAll(
+            _takeRandom(chapterQuestions, questionCount),
+          );
+        }
+      }
     }
 
+    allQuestions.shuffle();
+    return allQuestions;
+  }
+
+  List<Question> _takeRandom(
+    List<Question> questions,
+    int count,
+  ) {
     final selected = List<Question>.from(questions);
     selected.shuffle();
 
-    return selected.take(questionCount).toList();
+    if (selected.length <= count) {
+      return selected;
+    }
+
+    return selected.take(count).toList();
   }
 }

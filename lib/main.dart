@@ -2,6 +2,9 @@ import 'package:flutter/material.dart';
 import 'importer/question_importer.dart';
 import 'services/syllabus_service.dart';
 import 'models/test_selection.dart';
+import 'services/test_generator.dart';
+import 'test_screen.dart';
+import 'test_instructions_screen.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -468,7 +471,27 @@ class _TestSetupScreenState extends State<TestSetupScreen> {
               width: double.infinity,
               child: ElevatedButton(
                 onPressed: canContinue()
-                    ? () {}
+                    ? () async {
+                        final generator = TestGenerator();
+
+                        final questions =
+                            await generator.generateFromSelection(
+                          exam: selectedExam,
+                          selection: testSelection,
+                        );
+
+                        if (!mounted) return;
+
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => TestInstructionsScreen(
+                              questions: questions,
+                              testTimeMinutes: testTime,
+                            ),
+                          ),
+                        );
+                      }
                     : null,
                 child: const Text('Continue'),
               ),

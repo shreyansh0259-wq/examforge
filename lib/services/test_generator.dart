@@ -19,10 +19,11 @@ class TestGenerator {
       }
 
       final questionCount = subjectSelection.questionCount;
-      final difficulty = subjectSelection.difficulty;
 
       for (final chapter in chapterNames) {
         final chapterSelection = subjectSelection.chapters[chapter]!;
+        final difficulty =
+            chapterSelection.difficulty ?? subjectSelection.difficulty;
 
         final topics = chapterSelection.topics;
 

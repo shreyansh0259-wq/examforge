@@ -2,15 +2,18 @@ import 'package:flutter/material.dart';
 import 'models/question.dart';
 import 'models/topic_performance.dart';
 import 'models/subject_performance.dart';
+import 'models/difficulty_analysis.dart';
 
 class ResultScreen extends StatelessWidget {
   final List<Question> questions;
   final Map<int, int> selectedAnswers;
+  final String difficulty;
 
   const ResultScreen({
     super.key,
     required this.questions,
     required this.selectedAnswers,
+    this.difficulty = 'Mixed',
   });
 
   int get attempted => selectedAnswers.length;
@@ -39,6 +42,16 @@ class ResultScreen extends StatelessWidget {
   // NEET-style scoring for the current test result.
   // This will later be replaced by exam-specific scoring rules.
   int get score => (correct * 4) - incorrect;
+
+  DifficultyAnalysis get difficultyAnalysis {
+    return DifficultyAnalysis.fromDifficulty(difficulty);
+  }
+
+  int get equivalentScore {
+    return difficultyAnalysis
+        .getEquivalentScore(score)
+        .round();
+  }
 
   double get accuracy {
     if (attempted == 0) return 0;
@@ -256,6 +269,23 @@ class ResultScreen extends StatelessWidget {
               '$score',
               style: const TextStyle(
                 fontSize: 40,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+
+            const SizedBox(height: 8),
+
+            Text(
+              'Test Difficulty: $difficulty',
+              style: const TextStyle(fontSize: 15),
+            ),
+
+            const SizedBox(height: 4),
+
+            Text(
+              'Estimated Equivalent Score: $equivalentScore',
+              style: const TextStyle(
+                fontSize: 17,
                 fontWeight: FontWeight.bold,
               ),
             ),

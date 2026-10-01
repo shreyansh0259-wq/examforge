@@ -6,11 +6,13 @@ import 'result_screen.dart';
 class TestScreen extends StatefulWidget {
   final List<Question> questions;
   final int testTimeMinutes;
+  final String difficulty;
 
   const TestScreen({
     super.key,
     required this.questions,
     required this.testTimeMinutes,
+    this.difficulty = 'Mixed',
   });
 
   @override
@@ -148,6 +150,7 @@ class _TestScreenState extends State<TestScreen> {
         builder: (context) => ResultScreen(
           questions: widget.questions,
           selectedAnswers: selectedAnswers,
+          difficulty: widget.difficulty,
         ),
       ),
     );

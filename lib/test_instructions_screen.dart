@@ -12,6 +12,23 @@ class TestInstructionsScreen extends StatelessWidget {
     required this.testTimeMinutes,
   });
 
+  String get effectiveDifficulty {
+    if (questions.isEmpty) return 'Mixed';
+
+    final counts = <String, int>{};
+
+    for (final question in questions) {
+      counts[question.difficulty] =
+          (counts[question.difficulty] ?? 0) + 1;
+    }
+
+    if (counts.length == 1) {
+      return counts.keys.first;
+    }
+
+    return 'Mixed';
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -139,6 +156,7 @@ class TestInstructionsScreen extends StatelessWidget {
                               builder: (context) => TestScreen(
                                 questions: questions,
                                 testTimeMinutes: testTimeMinutes,
+                                difficulty: effectiveDifficulty,
                               ),
                             ),
                           );

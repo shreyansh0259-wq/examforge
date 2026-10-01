@@ -4,6 +4,7 @@ import 'services/syllabus_service.dart';
 import 'models/test_selection.dart';
 import 'services/test_generator.dart';
 import 'test_screen.dart';
+import 'test_mode_screen.dart';
 import 'test_instructions_screen.dart';
 
 Future<void> main() async {
@@ -485,7 +486,7 @@ class _TestSetupScreenState extends State<TestSetupScreen> {
                         Navigator.push(
                           context,
                           MaterialPageRoute(
-                            builder: (context) => TestInstructionsScreen(
+                            builder: (context) => TestModeScreen(
                               questions: questions,
                               testTimeMinutes: testTime,
                             ),

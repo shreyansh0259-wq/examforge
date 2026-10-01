@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'models/question.dart';
+import 'models/topic_performance.dart';
+import 'models/subject_performance.dart';
 
 class ResultScreen extends StatelessWidget {
   final List<Question> questions;
@@ -41,6 +43,81 @@ class ResultScreen extends StatelessWidget {
   double get accuracy {
     if (attempted == 0) return 0;
     return (correct / attempted) * 100;
+  }
+
+  List<SubjectPerformance> get subjectPerformances {
+    final map = <String, SubjectPerformance>{};
+
+    for (final entry in selectedAnswers.entries) {
+      final index = entry.key;
+      final selected = entry.value;
+
+      if (index < 0 || index >= questions.length) continue;
+
+      final question = questions[index];
+
+      final performance = map.putIfAbsent(
+        question.subject,
+        () => SubjectPerformance(subject: question.subject),
+      );
+
+      performance.attempted++;
+
+      if (selected == question.correctAnswer) {
+        performance.correct++;
+      } else {
+        performance.incorrect++;
+      }
+    }
+
+    final result = map.values.toList();
+
+    result.sort(
+      (a, b) => a.accuracy.compareTo(b.accuracy),
+    );
+
+    return result;
+  }
+
+  List<TopicPerformance> get topicPerformances {
+    final map = <String, TopicPerformance>{};
+
+    for (final entry in selectedAnswers.entries) {
+      final index = entry.key;
+      final selected = entry.value;
+
+      if (index < 0 || index >= questions.length) continue;
+
+      final question = questions[index];
+
+      final key =
+          '${question.subject}|${question.chapter}|${question.topic}';
+
+      final performance = map.putIfAbsent(
+        key,
+        () => TopicPerformance(
+          subject: question.subject,
+          chapter: question.chapter,
+          topic: question.topic,
+        ),
+      );
+
+      performance.attempted++;
+
+      if (selected == question.correctAnswer) {
+        performance.correct++;
+      } else {
+        performance.incorrect++;
+      }
+    }
+
+    final result = map.values.toList();
+
+    result.sort(
+      (a, b) => a.accuracy.compareTo(b.accuracy),
+    );
+
+    return result;
   }
 
   @override
@@ -85,6 +162,14 @@ class ResultScreen extends StatelessWidget {
           const SizedBox(height: 24),
 
           _scoreSimulator(),
+
+          const SizedBox(height: 24),
+
+          _weakTopicsCard(),
+
+          const SizedBox(height: 24),
+
+          _subjectPerformanceCard(),
 
           const SizedBox(height: 24),
 
@@ -298,6 +383,88 @@ class ResultScreen extends StatelessWidget {
               'cutoff data is connected.',
               style: TextStyle(fontSize: 14),
             ),
+          ],
+        ),
+      ),
+    );
+  }
+
+  Widget _subjectPerformanceCard() {
+    return Card(
+      child: Padding(
+        padding: const EdgeInsets.all(18),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            const Text(
+              'Subject Performance',
+              style: TextStyle(
+                fontSize: 20,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+            const SizedBox(height: 12),
+
+            ...subjectPerformances.map(
+              (subject) => ListTile(
+                contentPadding: EdgeInsets.zero,
+                title: Text(subject.subject),
+                subtitle: Text(
+                  'Attempted: ${subject.attempted} • '
+                  'Correct: ${subject.correct} • '
+                  'Incorrect: ${subject.incorrect}',
+                ),
+                trailing: Text(
+                  '${subject.accuracy.toStringAsFixed(1)}%',
+                  style: const TextStyle(
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+
+  Widget _weakTopicsCard() {
+    final weakTopics =
+        topicPerformances.where((topic) => topic.isWeak).toList();
+
+    return Card(
+      child: Padding(
+        padding: const EdgeInsets.all(18),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            const Text(
+              'Weak Topic Analysis',
+              style: TextStyle(
+                fontSize: 20,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+            const SizedBox(height: 12),
+
+            if (weakTopics.isEmpty)
+              const Text(
+                'No weak topics identified from attempted questions.',
+                style: TextStyle(fontSize: 15),
+              )
+            else
+              ...weakTopics.map(
+                (topic) => ListTile(
+                  contentPadding: EdgeInsets.zero,
+                  leading: const Icon(Icons.warning_amber_rounded),
+                  title: Text(topic.topic),
+                  subtitle: Text(
+                    '${topic.subject} • ${topic.chapter}\n'
+                    'Accuracy: ${topic.accuracy.toStringAsFixed(1)}% '
+                    '• Correct: ${topic.correct}/${topic.attempted}',
+                  ),
+                ),
+              ),
           ],
         ),
       ),

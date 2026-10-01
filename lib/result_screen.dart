@@ -4,6 +4,7 @@ import 'models/topic_performance.dart';
 import 'models/subject_performance.dart';
 import 'models/difficulty_analysis.dart';
 import 'models/exam_scoring.dart';
+import 'models/college_analysis.dart';
 
 class ResultScreen extends StatelessWidget {
   final List<Question> questions;
@@ -41,6 +42,16 @@ class ResultScreen extends StatelessWidget {
   int get incorrect => attempted - correct;
 
   int get unanswered => questions.length - attempted;
+
+  CollegeAnalysis get collegeAnalysis {
+    return CollegeAnalysis.empty(
+      exam: exam,
+      year: DateTime.now().year,
+      category: 'General',
+      counselling: 'Not specified',
+      score: equivalentScore,
+    );
+  }
 
   ExamScoring get examScoring {
     return ExamScoring.forExam(exam);
@@ -366,13 +377,34 @@ class ResultScreen extends StatelessWidget {
             const SizedBox(height: 14),
 
             _analysisRow(
-              'Current score',
+              'Raw score',
               '$score marks',
             ),
 
             _analysisRow(
-              'Cutoff data',
-              'Not connected yet',
+              'Equivalent score',
+              '${collegeAnalysis.score} marks',
+            ),
+
+            _analysisRow(
+              'Expected rank',
+              collegeAnalysis.estimatedRank?.toString() ?? 'Pending verified data',
+            ),
+
+            _analysisRow(
+              'Possible colleges',
+              collegeAnalysis.possibleColleges.isEmpty
+                  ? 'Pending verified cutoff data'
+                  : collegeAnalysis.possibleColleges.join(', '),
+            ),
+
+            const SizedBox(height: 8),
+
+            _analysisRow(
+              'Next better options',
+              collegeAnalysis.nextBetterColleges.isEmpty
+                  ? 'Pending verified cutoff data'
+                  : collegeAnalysis.nextBetterColleges.join(', '),
             ),
 
             const SizedBox(height: 10),
@@ -409,18 +441,21 @@ class ResultScreen extends StatelessWidget {
             const SizedBox(height: 12),
 
             ...improvements.map(
-              (marks) => _analysisRow(
-                '+$marks marks',
-                '${score + marks} marks',
-              ),
+              (marks) {
+                final simulatedScore = score + marks;
+
+                return _analysisRow(
+                  '+$marks marks',
+                  '$simulatedScore marks',
+                );
+              },
             ),
 
             const SizedBox(height: 8),
 
             const Text(
-              'This simulator shows score changes only. '
-              'College changes will be calculated after verified '
-              'cutoff data is connected.',
+              'Rank and college changes will be shown here '
+              'after verified year-wise cutoff data is connected.',
               style: TextStyle(fontSize: 14),
             ),
           ],

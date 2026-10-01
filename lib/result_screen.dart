@@ -3,17 +3,20 @@ import 'models/question.dart';
 import 'models/topic_performance.dart';
 import 'models/subject_performance.dart';
 import 'models/difficulty_analysis.dart';
+import 'models/exam_scoring.dart';
 
 class ResultScreen extends StatelessWidget {
   final List<Question> questions;
   final Map<int, int> selectedAnswers;
   final String difficulty;
+  final String exam;
 
   const ResultScreen({
     super.key,
     required this.questions,
     required this.selectedAnswers,
     this.difficulty = 'Mixed',
+    this.exam = 'NEET',
   });
 
   int get attempted => selectedAnswers.length;
@@ -39,9 +42,16 @@ class ResultScreen extends StatelessWidget {
 
   int get unanswered => questions.length - attempted;
 
-  // NEET-style scoring for the current test result.
-  // This will later be replaced by exam-specific scoring rules.
-  int get score => (correct * 4) - incorrect;
+  ExamScoring get examScoring {
+    return ExamScoring.forExam(exam);
+  }
+
+  int get score {
+    return examScoring.calculateScore(
+      correct: correct,
+      incorrect: incorrect,
+    );
+  }
 
   DifficultyAnalysis get difficultyAnalysis {
     return DifficultyAnalysis.fromDifficulty(difficulty);

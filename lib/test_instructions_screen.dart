@@ -5,11 +5,13 @@ import 'test_screen.dart';
 class TestInstructionsScreen extends StatelessWidget {
   final List<Question> questions;
   final int testTimeMinutes;
+  final String exam;
 
   const TestInstructionsScreen({
     super.key,
     required this.questions,
     required this.testTimeMinutes,
+    this.exam = 'NEET',
   });
 
   String get effectiveDifficulty {
@@ -157,6 +159,7 @@ class TestInstructionsScreen extends StatelessWidget {
                                 questions: questions,
                                 testTimeMinutes: testTimeMinutes,
                                 difficulty: effectiveDifficulty,
+                                exam: exam,
                               ),
                             ),
                           );

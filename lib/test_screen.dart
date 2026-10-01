@@ -7,12 +7,14 @@ class TestScreen extends StatefulWidget {
   final List<Question> questions;
   final int testTimeMinutes;
   final String difficulty;
+  final String exam;
 
   const TestScreen({
     super.key,
     required this.questions,
     required this.testTimeMinutes,
     this.difficulty = 'Mixed',
+    this.exam = 'NEET',
   });
 
   @override
@@ -151,6 +153,7 @@ class _TestScreenState extends State<TestScreen> {
           questions: widget.questions,
           selectedAnswers: selectedAnswers,
           difficulty: widget.difficulty,
+          exam: widget.exam,
         ),
       ),
     );

@@ -489,6 +489,7 @@ class _TestSetupScreenState extends State<TestSetupScreen> {
                             builder: (context) => TestModeScreen(
                               questions: questions,
                               testTimeMinutes: testTime,
+                              exam: selectedExam,
                             ),
                           ),
                         );

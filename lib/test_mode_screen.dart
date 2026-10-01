@@ -6,11 +6,13 @@ import 'services/pdf_service.dart';
 class TestModeScreen extends StatelessWidget {
   final List<Question> questions;
   final int testTimeMinutes;
+  final String exam;
 
   const TestModeScreen({
     super.key,
     required this.questions,
     required this.testTimeMinutes,
+    this.exam = 'NEET',
   });
 
   @override
@@ -52,6 +54,7 @@ class TestModeScreen extends StatelessWidget {
                             builder: (context) => TestInstructionsScreen(
                               questions: questions,
                               testTimeMinutes: testTimeMinutes,
+                              exam: exam,
                             ),
                           ),
                         );

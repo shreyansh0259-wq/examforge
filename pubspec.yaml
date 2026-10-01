@@ -29,3 +29,4 @@ flutter:
     - assets/data/questions/
     - assets/data/questions/neet/
     - assets/data/schema/
+    - assets/data/college_cutoffs/

@@ -23,7 +23,7 @@ class CollegeDatabase {
 
     return openDatabase(
       path,
-      version: 1,
+      version: 2,
       onCreate: (db, version) async {
         await db.execute('''
           CREATE TABLE college_cutoffs (
@@ -33,6 +33,9 @@ class CollegeDatabase {
             course TEXT NOT NULL,
             category TEXT NOT NULL,
             counselling TEXT NOT NULL,
+            quota TEXT,
+            state TEXT,
+            institute_type TEXT,
             year INTEGER NOT NULL,
             round INTEGER NOT NULL,
             opening_rank INTEGER,
@@ -51,6 +54,19 @@ class CollegeDatabase {
           CREATE INDEX idx_college_rank
           ON college_cutoffs(exam, year, closing_rank)
         ''');
+      },
+      onUpgrade: (db, oldVersion, newVersion) async {
+        if (oldVersion < 2) {
+          await db.execute(
+            'ALTER TABLE college_cutoffs ADD COLUMN quota TEXT',
+          );
+          await db.execute(
+            'ALTER TABLE college_cutoffs ADD COLUMN state TEXT',
+          );
+          await db.execute(
+            'ALTER TABLE college_cutoffs ADD COLUMN institute_type TEXT',
+          );
+        }
       },
     );
   }

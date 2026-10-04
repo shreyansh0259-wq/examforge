@@ -4,6 +4,9 @@ class CollegeCutoff {
   final String course;
   final String category;
   final String counselling;
+  final String? quota;
+  final String? state;
+  final String? instituteType;
   final int year;
   final int round;
   final int? openingRank;
@@ -17,6 +20,9 @@ class CollegeCutoff {
     required this.course,
     required this.category,
     required this.counselling,
+    this.quota,
+    this.state,
+    this.instituteType,
     required this.year,
     required this.round,
     required this.openingRank,

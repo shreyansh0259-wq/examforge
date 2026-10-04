@@ -14,6 +14,20 @@ class CollegeCutoff {
   final int? closingScore;
   final String source;
 
+  String get recordKey {
+    return [
+      exam,
+      year,
+      counselling,
+      round,
+      college,
+      course,
+      category,
+      quota ?? '',
+      state ?? '',
+    ].join('|').toLowerCase();
+  }
+
   const CollegeCutoff({
     required this.exam,
     required this.college,

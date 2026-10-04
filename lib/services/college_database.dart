@@ -23,11 +23,12 @@ class CollegeDatabase {
 
     return openDatabase(
       path,
-      version: 2,
+      version: 4,
       onCreate: (db, version) async {
         await db.execute('''
           CREATE TABLE college_cutoffs (
             id INTEGER PRIMARY KEY AUTOINCREMENT,
+            record_key TEXT NOT NULL UNIQUE,
             exam TEXT NOT NULL,
             college TEXT NOT NULL,
             course TEXT NOT NULL,
@@ -67,6 +68,35 @@ class CollegeDatabase {
             'ALTER TABLE college_cutoffs ADD COLUMN institute_type TEXT',
           );
         }
+        if (oldVersion < 3) {
+          await db.execute(
+            'ALTER TABLE college_cutoffs ADD COLUMN record_key TEXT',
+          );
+        }
+
+        if (oldVersion < 4) {
+          await db.execute('''
+            UPDATE college_cutoffs
+            SET record_key =
+              lower(
+                exam || '|' ||
+                year || '|' ||
+                counselling || '|' ||
+                round || '|' ||
+                college || '|' ||
+                course || '|' ||
+                category || '|' ||
+                coalesce(quota, '') || '|' ||
+                coalesce(state, '')
+              )
+            WHERE record_key IS NULL
+          ''');
+
+          await db.execute('''
+            CREATE UNIQUE INDEX IF NOT EXISTS idx_college_record_key
+            ON college_cutoffs(record_key)
+          ''');
+        }
       },
     );
   }
@@ -76,9 +106,23 @@ extension CollegeDatabaseOperations on CollegeDatabase {
   Future<int> insertCutoff(Map<String, dynamic> data) async {
     final db = await database;
 
+    final record = Map<String, dynamic>.from(data);
+
+    record['record_key'] ??= [
+      record['exam'],
+      record['year'],
+      record['counselling'],
+      record['round'],
+      record['college'],
+      record['course'],
+      record['category'],
+      record['quota'] ?? '',
+      record['state'] ?? '',
+    ].join('|').toLowerCase();
+
     return db.insert(
       'college_cutoffs',
-      data,
+      record,
       conflictAlgorithm: ConflictAlgorithm.replace,
     );
   }

@@ -8,52 +8,62 @@ import 'cutoff_data_validator.dart';
 class CollegeImportService {
   Future<int> importJson(String assetPath) async {
     final raw = await rootBundle.loadString(assetPath);
-    final json = jsonDecode(raw) as Map<String, dynamic>;
+    final json = jsonDecode(raw);
 
-    final records = json['records'] as List<dynamic>? ?? [];
+    if (json is! Map<String, dynamic>) {
+      return 0;
+    }
+
+    final exam = json['exam'];
+    final year = json['year'];
+    final counselling = json['counselling'];
+    final records = json['records'];
+
+    if (exam is! String || exam.trim().isEmpty) {
+      return 0;
+    }
+
+    if (year is! int || year < 2000) {
+      return 0;
+    }
+
+    if (counselling is! String || counselling.trim().isEmpty) {
+      return 0;
+    }
+
+    if (records is! List) {
+      return 0;
+    }
 
     var imported = 0;
 
     for (final item in records) {
-      final record = item as Map<String, dynamic>;
+      if (item is! Map<String, dynamic>) {
+        continue;
+      }
 
       final normalized = {
-        'exam': json['exam'],
-        'college': record['college'],
-        'course': record['course'],
-        'category': record['category'],
-        'counselling': json['counselling'],
-        'quota': record['quota'],
-        'state': record['state'],
-        'institute_type': record['institute_type'],
-        'year': json['year'],
-        'round': record['round'],
-        'opening_rank': record['opening_rank'],
-        'closing_rank': record['closing_rank'],
-        'closing_score': record['closing_score'],
-        'source': record['source'],
+        'exam': exam,
+        'college': item['college'],
+        'course': item['course'],
+        'category': item['category'],
+        'counselling': counselling,
+        'quota': item['quota'],
+        'state': item['state'],
+        'institute_type': item['institute_type'],
+        'year': year,
+        'round': item['round'],
+        'opening_rank': item['opening_rank'],
+        'closing_rank': item['closing_rank'],
+        'closing_score': item['closing_score'],
+        'source': item['source'],
       };
 
       if (!CutoffDataValidator.isValid(normalized)) {
         continue;
       }
 
-      await CollegeDatabase.instance.insertCutoff({
-        'exam': json['exam'],
-        'college': record['college'],
-        'course': record['course'],
-        'category': record['category'],
-        'counselling': json['counselling'],
-        'quota': record['quota'],
-        'state': record['state'],
-        'institute_type': record['institute_type'],
-        'year': json['year'],
-        'round': record['round'],
-        'opening_rank': record['opening_rank'],
-        'closing_rank': record['closing_rank'],
-        'closing_score': record['closing_score'],
-        'source': record['source'],
-      });
+      await CollegeDatabase.instance.insertCutoff(normalized);
 
       imported++;
     }

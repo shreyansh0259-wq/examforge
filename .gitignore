@@ -43,3 +43,8 @@ app.*.map.json
 /android/app/debug
 /android/app/profile
 /android/app/release
+
+# Local backup files and Python cache
+*.bak
+*.bak2
+__pycache__/

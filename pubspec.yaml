@@ -21,7 +21,8 @@ dev_dependencies:
 flutter:
   uses-material-design: true
   assets:
-    - assets/data/
+    - assets/data/questions.json
+    - assets/data/syllabus.json
     - assets/data/syllabus/
     - assets/data/syllabus/neet/
     - assets/data/syllabus/jee_main/
@@ -29,4 +30,5 @@ flutter:
     - assets/data/questions/
     - assets/data/questions/neet/
     - assets/data/schema/
-    - assets/data/college_cutoffs/
+    - assets/data/schema/question_schema.json
+    - assets/data/college_cutoffs/neet/2025/mcc_round1_2025.json

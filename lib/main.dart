@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'screens/mcc_allotment_screen.dart';
 import 'importer/question_importer.dart';
 import 'services/syllabus_service.dart';
 import 'models/test_selection.dart';
@@ -40,16 +41,37 @@ class HomeScreen extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(title: const Text('ExamForge')),
       body: Center(
-        child: ElevatedButton(
-          onPressed: () {
-            Navigator.push(
-              context,
-              MaterialPageRoute(
-                builder: (context) => const TestSetupScreen(),
+        child: Padding(
+          padding: const EdgeInsets.all(24),
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: [
+              ElevatedButton(
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => const TestSetupScreen(),
+                    ),
+                  );
+                },
+                child: const Text('Create Your Custom Test'),
               ),
-            );
-          },
-          child: const Text('Create Your Custom Test'),
+              const SizedBox(height: 16),
+              OutlinedButton(
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => const MccAllotmentScreen(),
+                    ),
+                  );
+                },
+                child: const Text('MCC NEET-UG 2025 Allotments'),
+              ),
+            ],
+          ),
         ),
       ),
     );
